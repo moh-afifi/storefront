@@ -7,3 +7,5 @@ CREATE TABLE users(
 );
 
  GRANT ALL PRIVILEGES ON TABLE users TO store_user;
+
+ INSERT INTO users (user_name, password,first_name,last_name) VALUES('user1', '123456' ,'test', 'user') RETURNING * ;

@@ -21,8 +21,8 @@ it('test get all products - model', () => __awaiter(void 0, void 0, void 0, func
     const result = yield orderStore.index();
     expect(result[0]).toEqual({
         id: 1,
-        product_name: 'shirt',
-        category: 'clothes',
+        product_name: 'test_product',
+        category: 'men',
         price: 100,
     });
 }));

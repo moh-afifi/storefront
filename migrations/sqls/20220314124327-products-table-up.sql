@@ -6,3 +6,8 @@ CREATE TABLE products(
 
 );
  GRANT ALL PRIVILEGES ON TABLE products TO store_user;
+
+ INSERT INTO products (product_name, category, price) VALUES('test_product', 'men', '100') RETURNING * ;
+
+
+ 

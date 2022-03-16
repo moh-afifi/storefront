@@ -13,8 +13,8 @@ it('test get all products - model', async () => {
 
   expect(result[0]).toEqual({
     id: 1,
-    product_name: 'shirt',
-    category: 'clothes',
+    product_name: 'test_product',
+    category: 'men',
     price: 100,
   });
 

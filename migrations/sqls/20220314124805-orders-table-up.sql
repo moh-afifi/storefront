@@ -6,3 +6,5 @@ CREATE TABLE orders(
 
 
  GRANT ALL PRIVILEGES ON TABLE orders TO store_user;
+
+  INSERT INTO orders (order_status , user_id) VALUES('open', '1') RETURNING * ;

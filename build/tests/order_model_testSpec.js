@@ -41,8 +41,8 @@ it('test add new order product - model', () => __awaiter(void 0, void 0, void 0,
     spyOn(pg_1.default, 'Client').and.returnValue(mClient);
     const result = yield orderStore.addOrderProduct(20, '1', '1');
     expect(result.quantity).toEqual(20);
-    expect(result.order_id).toEqual('1');
-    expect(result.product_id).toEqual('1');
+    expect(`${result.order_id}`).toEqual('1');
+    expect(`${result.product_id}`).toEqual('1');
 }));
 it('test get order by user - model', () => __awaiter(void 0, void 0, void 0, function* () {
     const mClient = jasmine.createSpyObj('client', ['connect', 'query']);

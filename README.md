@@ -9,11 +9,16 @@
 
 - to connect to datavse: \c storefront_db
 
-- CREATE USER store_user WITH PASSWORD 'test_password';
+- CREATE USER store_user WITH PASSWORD '123456';
 
 - GRANT ALL PRIVILEGES on database storefront_db to store_user;
 
 - GRANT USAGE, SELECT ON ALL SEQUENCES IN SCHEMA public TO store_user;
+
+- run command: \q
+
+- run command : db-migrate up
+
 
 ## sample of .env file
 - POSTGRES_HOST=127.0.0.1

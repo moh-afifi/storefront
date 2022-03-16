@@ -36,8 +36,8 @@ it('test add new order product - model', async () => {
   const result: OrderProduct = await orderStore.addOrderProduct(20, '1', '1');
 
   expect(result.quantity).toEqual(20);
-  expect(result.order_id).toEqual('1');
-  expect(result.product_id).toEqual('1');
+  expect(`${result.order_id}`).toEqual('1');
+  expect(`${result.product_id}`).toEqual('1');
 });
 
 it('test get order by user - model', async () => {
