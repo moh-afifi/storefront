@@ -2,29 +2,27 @@
 ## Setup database instructions:
 
 - port number for databse is :5432 
-
 - to open postgres databse : psql postgres postgres   
-
 - CREATE DATABASE storefront_db;
-
 - to connect to datavse: \c storefront_db
-
 - CREATE USER store_user WITH PASSWORD '123456';
-
 - GRANT ALL PRIVILEGES on database storefront_db to store_user;
-
 - GRANT USAGE, SELECT ON ALL SEQUENCES IN SCHEMA public TO store_user;
-
+- CREATE DATABASE storefront_db_test;
+- to connect to datavse: \c storefront_db_test
+- CREATE USER store_user_test WITH PASSWORD '123456';
+- GRANT ALL PRIVILEGES on database storefront_db_test to store_user_test;
+- GRANT USAGE, SELECT ON ALL SEQUENCES IN SCHEMA public TO store_user_test;
 - run command: \q
-
 - run command : db-migrate up
 
 
 ## sample of .env file
 - POSTGRES_HOST=127.0.0.1
 - POSTGRES_DB=storefront_db
-- POSTGRES_DB_TEST= storefront_db_test
+- POSTGRES_DB_TEST=storefront_db_test
 - POSTGRES_USER=store_user
+- POSTGRES_USER_TEST=store_user_test
 - POSTGRES_PASSWORD=123456
 - BCRYPT_PASSWORD=store_salt_password
 - SALT_ROUNDS=10

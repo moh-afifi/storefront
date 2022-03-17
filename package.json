@@ -9,7 +9,7 @@
     "build": "npx tsc",
     "jasmine": "jasmine",
     "start": "nodemon src/index.ts",
-    "test": "npm run build && npm run jasmine",
+    "test": "set ENV=test&& db-migrate -e test up && npm run build && npm run jasmine && db-migrate -e test reset",
     "watch": "tsc-watch --esModuleInterop src/index.ts --outDir ./build--onSuccess \"node ./build/index.js\"",
     "tsc": "tsc"
   },

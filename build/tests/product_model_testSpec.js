@@ -15,33 +15,62 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const pg_1 = __importDefault(require("pg"));
 const product_1 = require("../models/product");
 const orderStore = new product_1.ClothesStore();
-it('test get all products - model', () => __awaiter(void 0, void 0, void 0, function* () {
-    const mClient = jasmine.createSpyObj('client', ['connect', 'query']);
-    spyOn(pg_1.default, 'Client').and.returnValue(mClient);
-    const result = yield orderStore.index();
-    expect(result[0]).toEqual({
-        id: 1,
-        product_name: 'test_product',
-        category: 'men',
-        price: 100,
+describe("test get all products - model", function () {
+    beforeEach(function () {
+        return __awaiter(this, void 0, void 0, function* () {
+            const mClient = jasmine.createSpyObj('client', ['connect', 'query']);
+            spyOn(pg_1.default, 'Client').and.returnValue(mClient);
+            const body = {
+                product_name: 'shirt',
+                category: 'clothes',
+                price: 100,
+            };
+            yield orderStore.create(body);
+        });
     });
-}));
-it('test add new product - model', () => __awaiter(void 0, void 0, void 0, function* () {
-    const mClient = jasmine.createSpyObj('client', ['connect', 'query']);
-    spyOn(pg_1.default, 'Client').and.returnValue(mClient);
-    const body = {
-        product_name: 'shirt',
-        category: 'clothes',
-        price: 100,
-    };
-    const result = yield orderStore.create(body);
-    expect(result.product_name).toEqual('shirt');
-    expect(result.category).toEqual('clothes');
-    expect(result.price).toEqual(100);
-}));
-it('test get single product - model', () => __awaiter(void 0, void 0, void 0, function* () {
-    const mClient = jasmine.createSpyObj('client', ['connect', 'query']);
-    spyOn(pg_1.default, 'Client').and.returnValue(mClient);
-    const result = yield orderStore.show(1);
-    expect(result[0].id).toEqual(1);
-}));
+    it('test get all products - model', () => __awaiter(this, void 0, void 0, function* () {
+        let result = yield orderStore.index();
+        expect(result[result.length - 1]).toEqual({
+            id: result.length,
+            product_name: 'shirt',
+            category: 'clothes',
+            price: 100,
+        });
+    }));
+});
+describe("test add new product - model", function () {
+    let result;
+    beforeEach(function () {
+        return __awaiter(this, void 0, void 0, function* () {
+            const mClient = jasmine.createSpyObj('client', ['connect', 'query']);
+            spyOn(pg_1.default, 'Client').and.returnValue(mClient);
+            const body = {
+                product_name: 'shirt',
+                category: 'clothes',
+                price: 100,
+            };
+            result = yield orderStore.create(body);
+        });
+    });
+    it('test add new product - model', () => __awaiter(this, void 0, void 0, function* () {
+        expect(result.product_name).toEqual('shirt');
+        expect(result.category).toEqual('clothes');
+        expect(result.price).toEqual(100);
+    }));
+});
+describe("test get single product - model", function () {
+    beforeEach(function () {
+        return __awaiter(this, void 0, void 0, function* () {
+            const body = {
+                product_name: 'shirt',
+                category: 'clothes',
+                price: 100,
+            };
+            yield orderStore.create(body);
+        });
+    });
+    it('test get single product - model', () => __awaiter(this, void 0, void 0, function* () {
+        const result = yield orderStore.show(1);
+        expect(result[0].id).toEqual(1);
+    }));
+});
